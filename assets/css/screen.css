@@ -381,17 +381,24 @@ margin on the iframe, cause it breaks stuff. */
    4. General - The main styles for the the theme
    ========================================================================== */
 
-/* Big cover image on the home page */
 .site-head {
     position: relative;
     display: table;
     width: 100%;
     height: 60%;
-    margin-bottom: 5rem;
     text-align: center;
     color: #fff;
-    background: #303538 no-repeat center center;
+    background: rgba(0,0,0,0.5);
+}
+
+/* Big cover image on the home page */
+.blog-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: no-repeat center center;
     background-size: cover;
+	-webkit-filter: blur(8px) brightness(80%);
 }
 
 .blog-logo {
@@ -428,6 +435,20 @@ margin on the iframe, cause it breaks stuff. */
     font-family: 'Roboto', serif;
     letter-spacing: 0;
     text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.blog-social {
+    margin-top: 10px;
+}
+
+.blog-social a {
+    display: inline-block;
+    width: 40px;
+    margin: 10px 5px;
+}
+
+.blog-social a img{
+    width: 100%;
 }
 
 /* Every post, on every page, gets this style on its <article> tag */
@@ -864,13 +885,13 @@ margin on the iframe, cause it breaks stuff. */
     }
 
     .site-head {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
         height: auto;
         min-height: 240px;
-        padding: 15% 0;
     }
+	
+	.blog-cover {
+        /* Nothing to do */ 
+	}
 
     .blog-title {
         font-size: 4rem;

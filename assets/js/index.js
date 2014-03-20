@@ -30,6 +30,32 @@
 
 }(jQuery));
 
+// Fetch a new wallpaper from the Muzei database
+(function($) {
+
+    $(window).load(function() {
+        // Get the cover and fade it in
+        var cover = $('.blog-cover');
+        cover.hide().fadeIn(2000);
+        // Fetch the artwork
+        $.ajax({
+            url: 'http://muzeiapi.appspot.com/featured?cachebust=1',
+            dataType: 'JSONP',
+            jsonpCallback: 'callback',
+            type: 'GET',
+            // Show the new artwork
+            success: function(data) {
+                cover.css('background-image', 'url(' + data["imageUri"] + ')');
+            },
+            // Show the default artwork
+            error: function(e) {
+                cover.css('background-image', 'url(/assets/images/charlotte.gif)');
+            }
+        });
+
+    });
+} (jQuery));
+
 (function($,sr){
 
   // debouncing function from John Hann
