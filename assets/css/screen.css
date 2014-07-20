@@ -14,10 +14,12 @@
     7.  Third Party Elements
     8.  Pagination
     9.  Footer
-    10.  Media Queries (Tablet)
-    11. Media Queries (Mobile)
+    10. Media Queries (Medium Desktop)
+    11. Media Queries (Tablet)
+    12. Media Queries (Mobile)
+    13. Animations
 
- */
+*/
 
 /* ==========================================================================
    0. Normalize.css v2.1.3 | MIT License | git.io/normalize | (minified)
@@ -31,6 +33,8 @@
    
 /* Import Roboto */
 @import url(/assets/css/fonts.css);
+b, strong { font-weight: 700; }
+mark { background: #FF0; color: #000; }
 
 
 /* ==========================================================================
@@ -39,35 +43,31 @@
 
 /* Import the font file with the icons in it */
 @font-face {
-    font-family: 'icons';
-    src:url('../fonts/icons.eot');
-    src:url('../fonts/icons.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/icons.woff') format('woff'),
-        url('../fonts/icons.ttf') format('truetype'),
-        url('../fonts/icons.svg#icons') format('svg');
+    font-family: "icons";
+    src:url("../fonts/icons.eot");
+    src:url("../fonts/icons.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/icons.woff") format("woff"),
+        url("../fonts/icons.ttf") format("truetype"),
+        url("../fonts/icons.svg#icons") format("svg");
     font-weight: normal;
     font-style: normal;
 }
 
 /* Apply these base styles to all icons */
-.icon-ghost:before,
-.icon-feed:before,
-.icon-twitter:before,
-.icon-google-plus:before,
-.icon-facebook:before {
-    font-family: 'icons';
+[class^="icon-"], [class*=" icon-"] {
+    font-family: "icons";
     speak: none;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
     text-transform: none;
     line-height: 1;
-    text-decoration: none;
+    text-decoration: none !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Each icon is created by inserting the corret character into the
+/* Each icon is created by inserting the correct character into the
    content of the :before pseudo element. Like a boss. */
 .icon-ghost:before {
     content: "\e000";
@@ -85,6 +85,10 @@
 .icon-facebook:before {
     content: "\e004";
 }
+.icon-arrow-left:before {
+    content: "\e005";
+}
+
 
 
 /* ==========================================================================
@@ -95,69 +99,74 @@ html {
     height: 100%;
     max-height: 100%;
     font-size: 62.5%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body {
+    -webkit-font-feature-settings: 'kern' 1;
+    -moz-font-feature-settings: 'kern' 1;
+    -ms-font-feature-settings: 'kern' 1;
+    -o-font-feature-settings: 'kern' 1;
+    font-feature-settings: 'kern' 1;
     height: 100%;
     max-height: 100%;
-    font-family: 'Noto Serif', serif;
-    font-size: 2.0rem;
-    line-height: 1.6em;
+    font-family: "Noto Serif", serif;
+    font-size: 2.2rem;
+    line-height: 1.7em;
     color: #3A4145;
 }
 
 ::-moz-selection {
-    color: #222;
     background: #D6EDFF;
-    text-shadow: none;
 }
 
 ::selection {
-    color: #222;
     background: #D6EDFF;
-    text-shadow: none;
 }
 
 h1, h2, h3,
 h4, h5, h6 {
-    text-rendering: optimizeLegibility;
-    line-height: 1;
-    margin-top: 0;
-    font-family: 'Open Sans', sans-serif;
+    -webkit-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
+    -moz-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
+    -ms-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
+    -o-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
+    font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
+    color: #2E2E2E;
+    line-height: 1.15em;
+    margin: 0 0 0.5em 0;
+    font-family: "Open Sans", sans-serif;
 }
 
 h1 {
-    font-size: 5rem;
-    line-height: 1.2em;
+    font-size: 5.6rem;
     letter-spacing: -2px;
     text-indent: -3px;
 }
 
 h2 {
-    font-size: 4rem;
-    line-height: 1.2em;
+    font-size: 4.4rem;
     letter-spacing: -1px;
     text-indent: -2px;
 }
 
 h3 {
-    font-size: 3.5rem;
+    font-size: 3.9rem;
 }
 
 h4 {
-    font-size: 3rem;
+    font-size: 3.1rem;
 }
 
 h5 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
 }
 
 h6 {
-    font-size: 2rem;
+    font-size: 2.2rem;
 }
 
 a {
-    color: #4a4a4a;
+    color: #4A4A4A;
     transition: color ease 0.3s;
 }
 
@@ -170,14 +179,27 @@ h4 a, h5 a, h6 a {
     color: #50585D;
 }
 
+.post-template .post-title {
+    margin-bottom: 3.4rem;
+}
 
 p, ul, ol, dl {
-    margin: 1.6em 0;
+    -webkit-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
+    -moz-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
+    -ms-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
+    -o-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
+    font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
+    margin: 0 0 1.7em 0;
+}
+
+ol, ul {
+    padding-left: 0;
 }
 
 ol ol, ul ul,
 ul ol, ol ul {
-    margin: 0.4em 0;
+    margin: 0 0 0.4em 0;
+    padding-left: 2em;
 }
 
 dl dt {
@@ -188,8 +210,8 @@ dl dt {
     text-align: right;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-weight: bold;
-    margin-bottom: 1em
+    font-weight: 700;
+    margin-bottom: 1em;
 }
 
 dl dd {
@@ -201,7 +223,7 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #efefef;
+    border-top: #EFEFEF 1px solid;
     margin: 3.2em 0;
     padding: 0;
 }
@@ -209,9 +231,9 @@ hr {
 blockquote {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    margin: 1.6em 0 1.6em -2.2em;
+    margin: 1.7em 0 1.7em -2.2em;
     padding: 0 0 0 1.6em;
-    border-left: #4a4a4a 0.4em solid;
+    border-left: #4A4A4A 0.4em solid;
 }
 
 blockquote p {
@@ -222,20 +244,20 @@ blockquote p {
 blockquote small {
     display: inline-block;
     margin: 0.8em 0 0.8em 1.5em;
-    font-size:0.9em;
-    color: #ccc;
+    font-size: 0.9em;
+    color: #CCC;
 }
 
-blockquote small:before { content: '\2014 \00A0'; }
+blockquote small:before { content: "\2014 \00A0"; }
 
 blockquote cite {
-    font-weight:bold;
+    font-weight: 700;
 }
 
 blockquote cite a { font-weight: normal; }
 
 mark {
-    background-color: #ffc336;
+    background-color: #FFC336;
 }
 
 code, tt {
@@ -243,7 +265,7 @@ code, tt {
     font-family: Inconsolata, monospace, sans-serif;
     font-size: 0.85em;
     white-space: pre-wrap;
-    border: 1px solid #E3EDF3;
+    border: #E3EDF3 1px solid;
     background: #F7FAFB;
     border-radius: 2px;
 }
@@ -251,8 +273,8 @@ code, tt {
 pre {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    margin: 1.6em 0;
-    border: 1px solid #E3EDF3;
+    margin: 0 0 1.7em 0;
+    border: #E3EDF3 1px solid;
     width: 100%;
     padding: 10px;
     font-family: Inconsolata, monospace, sans-serif;
@@ -276,12 +298,12 @@ kbd {
     display: inline-block;
     margin-bottom: 0.4em;
     padding: 1px 8px;
-    border: #ccc 1px solid;
+    border: #CCC 1px solid;
     color: #666;
-    text-shadow: #fff 0 1px 0;
+    text-shadow: #FFF 0 1px 0;
     font-size: 0.9em;
-    font-weight: bold;
-    background: #f4f4f4;
+    font-weight: 700;
+    background: #F4F4F4;
     border-radius: 4px;
     box-shadow:
         0 1px 0 rgba(0, 0, 0, 0.2),
@@ -291,8 +313,8 @@ kbd {
 table {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    margin: 1.6em 0;
-    width:100%;
+    margin: 1.7em 0;
+    width: 100%;
     max-width: 100%;
     background-color: transparent;
 }
@@ -303,7 +325,7 @@ table td {
     line-height: 20px;
     text-align: left;
     vertical-align: top;
-    border-top: 1px solid #efefef;
+    border-top: #EFEFEF 1px solid;
 }
 
 table th { color: #000; }
@@ -317,13 +339,13 @@ table thead:first-child tr:first-child td {
     border-top: 0;
 }
 
-table tbody + tbody { border-top: 2px solid #efefef; }
+table tbody + tbody { border-top: #EFEFEF 2px solid; }
 
-table table table { background-color: #fff; }
+table table table { background-color: #FFF; }
 
 table tbody > tr:nth-child(odd) > td,
 table tbody > tr:nth-child(odd) > th {
-    background-color: #f6f6f6;
+    background-color: #F6F6F6;
 }
 
 table.plain tbody > tr:nth-child(odd) > td,
@@ -367,7 +389,7 @@ margin on the iframe, cause it breaks stuff. */
 .inner {
     position: relative;
     width: 80%;
-    max-width: 700px;
+    max-width: 780px;
     margin: 0 auto;
 }
 
@@ -388,7 +410,6 @@ margin on the iframe, cause it breaks stuff. */
     width: 100%;
     height: 60%;
     text-align: center;
-    color: #fff;
     background: rgba(0,0,0,0.5);
 }
 
@@ -421,20 +442,22 @@ margin on the iframe, cause it breaks stuff. */
 /* The details of your blog. Defined in ghost/settings/ */
 .blog-title {
     margin: 10px 0 10px 0;
-    font-size: 5rem;
+    font-size: 5.6rem;
     letter-spacing: -1px;
     font-weight: 700;
     font-family: 'Roboto', sans-serif;
+    color: #fff;
     text-shadow: 0 1px 6px rgba(0,0,0,0.1);
 }
 
 .blog-description {
     margin: 0;
-    font-size: 1.8rem;
-    line-height: 1.5em;
+    font-size: 2.4rem;
+    line-height: 1.6em;
     font-weight: 500;
     font-family: 'Roboto', serif;
     letter-spacing: 0;
+    color: rgba(255,255,255,0.8);
     text-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 
@@ -452,11 +475,39 @@ margin on the iframe, cause it breaks stuff. */
     width: 100%;
 }
 
+/* Add subtle load-in animation for content on the home page */
+.home-template .site-head {
+    -webkit-animation: fade-in-down-subtle 2s;
+    animation: fade-in-down-subtle 2s;
+}
+.home-template .blog-logo img {
+    -webkit-animation: fade-in-down 1s;
+    animation: fade-in-down 1s;
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+.home-template .blog-title {
+    -webkit-animation: fade-in-down 1s;
+    animation: fade-in-down 1s;
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+}
+.home-template .blog-description {
+    -webkit-animation: fade-in-down 1s;
+    animation: fade-in-down 1s;
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+}
+.home-template .content {
+    -webkit-animation: fade-in-up-subtle 2s;
+    animation: fade-in-up-subtle 2s;
+}
+
 /* Every post, on every page, gets this style on its <article> tag */
 .post {
     position: relative;
-    width:80%;
-    max-width: 700px;
+    width: 80%;
+    max-width: 780px;
     margin: 4rem auto;
     padding-bottom: 4rem;
     border-bottom: #EBF2F6 1px solid;
@@ -476,27 +527,19 @@ margin on the iframe, cause it breaks stuff. */
     bottom: -5px;
     left: 50%;
     margin-left: -5px;
-    background: #fff;
+    background: #FFF;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     border-radius: 100%;
-    box-shadow: #fff 0 0 0 5px;
-}
-
-.post-title {
-    margin:0;
-    color: #222;
+    box-shadow: #FFF 0 0 0 5px;
 }
 
 .post-title a {
     text-decoration: none;
-    color: #222;
 }
 
 .post-excerpt p {
-    margin: 1.6rem 0 0 0;
-    font-size: 0.9em;
-    line-height: 1.6em;
+    margin: 0;
 }
 
 .read-more {
@@ -506,7 +549,7 @@ margin on the iframe, cause it breaks stuff. */
 .post-meta {
     display: inline-block;
     margin: 0 0 5px 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 1.5rem;
     color: #9EABB3;
 }
@@ -534,7 +577,7 @@ margin on the iframe, cause it breaks stuff. */
 
 .user-name {
     display: block;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .user-bio {
@@ -554,7 +597,7 @@ margin on the iframe, cause it breaks stuff. */
 
 .publish-heading {
     display: block;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .publish-date {
@@ -566,6 +609,85 @@ margin on the iframe, cause it breaks stuff. */
 /* ==========================================================================
    5. Single Post - When you click on an individual post
    ========================================================================== */
+
+.main-nav {
+    position: relative;
+    padding: 15px;
+    margin: 0 0 30px 0;
+}
+
+.back-button {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    float: left;
+    height: 40px;
+    padding: 0 15px 0 10px;
+    border: transparent 1px solid;
+    color: #9EABB3;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 37px;
+    border-radius: 3px;
+    transition: all ease 0.3s;
+}
+.back-button:before {
+    position: relative;
+    bottom: -2px;
+    font-size: 13px;
+    line-height: 0;
+    margin-right: 8px;
+}
+
+.subscribe-button {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    float: right;
+    height: 40px;
+    padding: 0 20px;
+    border: transparent 1px solid;
+    color: #9EABB3;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 37px;
+    border-radius: 40px;
+    transition: all ease 0.3s;
+}
+.subscribe-button:before {
+    font-size: 9px;
+    margin-right: 6px;
+}
+
+/* Special styles when overlaid on an image*/
+.main-nav.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border: none;
+}
+
+.main-nav.overlay a {
+    color: rgba(255,255,255,0.7);
+}
+
+.main-nav.overlay a:hover {
+    color: #fff;
+    border-color: #fff;
+    background: transparent;
+}
+
+/* Add a border to the buttons on hover */
+.back-button:hover,
+.subscribe-button:hover {
+    border-color: #bfc8cd;
+    color: #9EABB3;
+}
 
 /* Stop .full-img from creating horizontal scroll - slight hack due to
    imperfections with browser width % calculations and rounding */
@@ -583,17 +705,6 @@ margin on the iframe, cause it breaks stuff. */
 /* Kill that stylish little circle that was on the border, too */
 .post-template .post:after {
     display: none;
-}
-
-/* Insert some mad padding up in the header for better spacing */
-.post-template .post-header {
-    padding: 60px 0;
-    text-align: center;
-}
-
-.post-template .blog-title {
-    display: inline-block;
-    padding: 2.5rem 0;
 }
 
 /* Keep images centred and within the bounds of the post-width */
@@ -695,36 +806,81 @@ margin on the iframe, cause it breaks stuff. */
     color: #50585D;
 }
 
-
-/* ==========================================================================
-   6. Tag archive
-   ========================================================================== */
-
-.tag-archive-header {
-    position: relative;
-    max-width: 700px;
-    margin: 4rem auto;
-    border-bottom: 1px solid #EBF2F6;
-    padding: 20px 0;
+/* The subscribe icon on the footer */
+.subscribe {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    margin-left: -15px;
+    border: #EBF2F6 1px solid;
     text-align: center;
-    color: #222;
+    line-height: 2.4rem;
+    border-radius: 50px;
+    background: #FFF;
+    transition: box-shadow 0.5s;
 }
 
-.tag-archive-header:after {
-    display: block;
-    content: "";
-    width: 7px;
-    height: 7px;
-    border: #E7EEF2 1px solid;
+/* The RSS icon, inserted via icon font */
+.subscribe:before {
+    color: #D2DEE3;
+    font-size: 10px;
     position: absolute;
-    bottom: -5px;
+    top: 2px;
+    left: 9px;
+    font-weight: 700;
+    transition: color 0.5s ease;
+}
+
+/* Add a box shadow to on hover */
+.subscribe:hover {
+    box-shadow: rgba(0,0,0,0.05) 0 0 0 3px;
+    transition: box-shadow 0.25s;
+}
+
+.subscribe:hover:before {
+    color: #50585D;
+}
+
+/* CSS tooltip saying "Subscribe!" - initially hidden */
+.tooltip {
+    opacity: 0;
+    display: block;
+    width: 52px;
+    padding: 4px 8px 5px 8px;
+    position:absolute;
+    top: -23px;
+    left: -21px;
+    color: rgba(255,255,255,0.9);
+    font-size: 1.1rem;
+    line-height: 1em;
+    text-align: center;
+    background: #50585D;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    transition: opacity 0.3s ease, top 0.3s ease;
+}
+
+/* The little chiclet arrow under the tooltip, pointing down */
+.tooltip:after {
+    content: " ";
+    border-width: 5px 5px 0 5px;
+    border-style: solid;
+    border-color: #50585D transparent;
+    display: block;
+    position: absolute;
+    bottom: -4px;
     left: 50%;
     margin-left: -5px;
-    background: #fff;
-    -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
-    border-radius: 100%;
-    box-shadow: #fff 0 0 0 5px;
+    z-index: 220;
+    width: 0;
+}
+
+/* On hover, show the tooltip! */
+.subscribe:hover .tooltip {
+    opacity: 1;
+    top: -33px;
 }
 
 
@@ -753,9 +909,9 @@ margin on the iframe, cause it breaks stuff. */
 .pagination {
     position: relative;
     width: 80%;
-    max-width: 700px;
+    max-width: 780px;
     margin: 4rem auto;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 1.3rem;
     color: #9EABB3;
     text-align: center;
@@ -784,6 +940,7 @@ margin on the iframe, cause it breaks stuff. */
 .page-number {
     display: inline-block;
     padding: 2px 0;
+    min-width: 100px;
 }
 
 .newer-posts {
@@ -803,121 +960,107 @@ margin on the iframe, cause it breaks stuff. */
 .site-footer {
     position: relative;
     margin: 8rem 0 0 0;
-    padding: 4rem 0;
+    padding: 0.5rem 35px;
     border-top: #EBF2F6 1px solid;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.3rem;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
     line-height: 1.7em;
     color: #BBC7CC;
-    text-align: center;
-    background: #F7FAFB;
 }
 
 .site-footer a {
     color: #BBC7CC;
-    text-decoration: underline;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .site-footer a:hover {
     color: #50585D;
 }
 
-.poweredby .icon-ghost {
-    font-weight: 700;
-    text-decoration: none;
+.poweredby {
+    display: block;
+    float: right;
+    text-align: right;
 }
 
-.poweredby .icon-ghost:hover {
-    text-decoration: none;
-}
-
-.poweredby .icon-ghost:before {
-    font-size: 1rem;
-    margin-right: 0.2em;
-}
-
-/* The subscribe icon on the footer */
-.subscribe {
-    width: 28px;
-    height: 28px;
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    margin-left: -15px;
-    border: #EBF2F6 1px solid;
-    text-align: center;
-    line-height: 2.4rem;
-    border-radius: 50px;
-    background: #fff;
-    transition: box-shadow 0.5s;
-}
-
-/* The RSS icon, inserted via icon font */
-.subscribe:before {
-    color: #D2DEE3;
-    font-size: 10px;
-    position: absolute;
-    top: 9px;
-    left: 9px;
-    font-weight: bold;
-    transition: color 0.5s ease;
-}
-
-/* Add a box shadow to on hover */
-.subscribe:hover {
-    box-shadow: rgba(0,0,0,0.05) 0 0 0 3px;
-    transition: box-shadow 0.25s;
-}
-
-.subscribe:hover:before {
-    color: #50585D;
-}
-
-/* CSS tooltip saying "Subscribe!" - initially hidden */
-.tooltip {
-    opacity:0;
-    display: inline-block;
-    padding: 4px 8px 5px 8px;
-    position:absolute;
-    top: -23px;
-    left: -21px;
-    color: rgba(255,255,255,0.9);
-    font-size: 1.1rem;
-    line-height: 1em;
-    text-align: center;
-    background: #50585D;
-    border-radius:20px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    transition: opacity 0.3s ease, top 0.3s ease;
-}
-
-/* The little chiclet arrow under the tooltip, pointing down */
-.tooltip:after {
-    content:"";
-    border-width:5px 5px 0 5px;
-    border-style:solid;
-    border-color: #50585D transparent;
-    display:block;
-    position:absolute;
-    bottom:-4px;
-    left:50%;
-    margin-left:-5px;
-    z-index: 220;
-    width:0;
-}
-
-/* On hover, show the tooltip! */
-.subscribe:hover .tooltip {
-    opacity: 1;
-    top: -33px;
+.copyright {
+    display: block;
+    float: left;
 }
 
 
 /* ==========================================================================
-   10. Media Queries - Smaller than 900px
+   10. Media Queries - Smaller than 1600px
+   ========================================================================== */
+
+@media only screen and (max-width: 1600px) {
+
+    .blog-title {
+        font-size: 5rem;
+    }
+
+    .blog-description {
+        font-size: 2rem;
+        line-height: 1.5em;
+    }
+
+    .post {
+        font-size: 0.9em;
+        line-height: 1.65em;
+    }
+
+    p, ul, ol, dl {
+        margin: 0 0 1.65em 0;
+    }
+
+    .post,
+    .inner,
+    .tag-archive-header {
+        max-width: 710px;
+    }
+
+    h1, h2, h3,
+    h4, h5, h6 {
+        margin: 0 0 0.4em 0;
+    }
+
+    h1 {
+        font-size: 5rem;
+    }
+
+    h2 {
+        font-size: 4rem;
+    }
+
+    h3 {
+        font-size: 3.5rem;
+    }
+
+    h4 {
+        font-size: 2.8rem;
+    }
+
+    h5 {
+        font-size: 2.5rem;
+    }
+
+    h6 {
+        font-size: 2rem;
+    }
+
+}
+
+
+/* ==========================================================================
+   11. Media Queries - Smaller than 900px
    ========================================================================== */
 
 @media only screen and (max-width: 900px) {
+
+    .main-nav {
+        padding: 10px;
+    }
 
     blockquote {
         margin-left: 0;
@@ -938,48 +1081,108 @@ margin on the iframe, cause it breaks stuff. */
     }
 
     .blog-description {
-        font-size: 1.7rem;
+        font-size: 1.8rem;
         line-height: 1.5em;
     }
 
     .post {
-        font-size: 0.9em;
-        line-height: 1.6em;
+        font-size: 0.8em
     }
 
     .post-template .post {
         padding-bottom: 1rem;
     }
 
-    .post-template .post-header {
-        padding: 40px 0;
+    hr {
+        margin: 2.4em 0;
+    }
+
+    ol, ul {
+        padding-left: 2em;
     }
 
     h1 {
-        font-size: 4.8rem;
+        font-size: 4.5rem;
         text-indent: -2px;
     }
 
     h2 {
-        font-size: 3.8rem;
+        font-size: 3.6rem;
     }
 
     h3 {
-        font-size: 3.3rem;
+        font-size: 3.1rem;
     }
 
     h4 {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
+    }
+
+    h5 {
+        font-size: 2.2rem;
+    }
+
+    h6 {
+        font-size: 1.8rem;
+    }
+
+    .site-footer {
+        padding: 0.5rem 15px;
     }
 
 }
 
+
 /* ==========================================================================
-   11. Media Queries - Smaller than 500px
+   12. Media Queries - Smaller than 500px
    ========================================================================== */
 
-
 @media only screen and (max-width: 500px) {
+
+    .site-head {
+        margin-bottom: 0;
+    }
+
+    .main-nav {
+        padding: 0;
+        margin-bottom: 2rem;
+        border-bottom: #e0e4e7 1px solid;
+    }
+
+    .back-button,
+    .subscribe-button {
+        height: 44px;
+        line-height: 41px;
+        border-radius: 0;
+        color: #2e2e2e;
+    }
+    .back-button:hover,
+    .subscribe-button:hover {
+        border-color: #ebeef0;
+        color: #2e2e2e;
+        background: #ebeef0;
+    }
+
+    .back-button {
+        padding: 0 15px 0 10px;
+    }
+
+    .subscribe-button {
+        padding: 0 12px;
+    }
+
+    .main-nav.overlay {
+        color: #fff;
+        background: rgba(0,0,0,0.4);
+        background: -moz-linear-gradient(top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.4)), color-stop(100%,rgba(0,0,0,0)));
+        background: -webkit-linear-gradient(top, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%);
+        background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 100%);
+    }
+    .main-nav.overlay a:hover {
+        border-color: transparent;
+        background: transparent;
+    }
 
     .blog-logo img {
         max-height: 80px;
@@ -993,11 +1196,26 @@ margin on the iframe, cause it breaks stuff. */
     }
 
     .post {
-        width:auto;
+        width: auto;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
         margin-left: 16px;
         margin-right: 16px;
+        padding-bottom: 2rem;
         font-size: 0.8em;
         line-height: 1.6em;
+    }
+
+    .post-template .post-title {
+        margin-bottom: 2rem;
+    }
+
+    hr {
+        margin: 1.6em 0;
+    }
+
+    p, ul, ol, dl {
+        margin: 0 0 2rem 0;
     }
 
     .blog-title {
@@ -1005,31 +1223,43 @@ margin on the iframe, cause it breaks stuff. */
     }
 
     .blog-description {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
 
+    h1, h2, h3,
+    h4, h5, h6 {
+        margin: 0 0 0.3em 0;
+    }
 
-    h1, h2 {
+    h1 {
         font-size: 3rem;
-        line-height: 1.1em;
         letter-spacing: -1px;
     }
 
+    h2 {
+        font-size: 2.6rem;
+        letter-spacing: 0;
+    }
+
     h3 {
-        font-size: 2.8rem;
+        font-size: 2.4rem;
     }
 
     h4 {
-        font-size: 2.3rem;
+        font-size: 2.1rem;
+    }
+
+    h5 {
+        font-size: 1.9rem;
+    }
+
+    h6 {
+        font-size: 1.7rem;
     }
 
     .post-template .post {
         padding-bottom: 0;
         margin-bottom: 0;
-    }
-
-    .post-template .post-header {
-        padding: 30px 0;
     }
 
     .post-template .site-footer {
@@ -1093,13 +1323,94 @@ margin on the iframe, cause it breaks stuff. */
     }
 
     .site-footer {
-        margin-top: 6rem;
-        font-size: 1.1rem;
+        margin-top: 3rem;
     }
 
 }
 
+
 /* ==========================================================================
-   End of file. Media queries should be the last thing here. Do not add stuff
+   13. Animations
+   ========================================================================== */
+
+@-webkit-keyframes fade-in-down {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-5px);
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(0);
+    }
+}
+@keyframes fade-in-down {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-5px);
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(0);
+    }
+}
+
+@-webkit-keyframes fade-in-down-subtle {
+    0% {
+        opacity: 0.8;
+        -webkit-transform: translateY(-5px);
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(0);
+    }
+}
+@keyframes fade-in-down-subtle {
+    0% {
+        opacity: 0.8;
+        -webkit-transform: translateY(-5px);
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(0);
+    }
+}
+
+@-webkit-keyframes fade-in-up-subtle {
+    0% {
+        opacity: 0.3;
+        -webkit-transform: translateY(3px);
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(0);
+    }
+}
+@keyframes fade-in-down-subtle {
+    0% {
+        opacity: 0.3;
+        -webkit-transform: translateY(3px);
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(0);
+    }
+}
+
+
+
+/* ==========================================================================
+   End of file. Animations should be the last thing here. Do not add stuff
    below this point, or it will probably fuck everything up.
    ========================================================================== */
